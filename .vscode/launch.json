@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: FastAPI",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "simple_rest_api.main:app",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "80"
+            ],
+            "jinja": true,
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Test API key",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/simple_rest_api/cli/test_api_key.py",
+            "args": [
+                "test-app",
+                "q_yzuekKQsPcL6ddaTuiigI-uqqq8o03hmTokEx21r"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

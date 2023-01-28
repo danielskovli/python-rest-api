@@ -1,0 +1,22 @@
+{
+    "editor.detectIndentation": false,
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 4,
+    "editor.minimap.renderCharacters": false,
+    "editor.renderControlCharacters": true,
+    "debug.showBreakpointsInOverviewRuler": true,
+    "python.languageServer": "Pylance",
+    "python.linting.enabled": false,
+    "python.defaultInterpreterPath": "python3",
+    "python.analysis.extraPaths": [
+        "${env:LOCALAPPDATA}/Programs/Python/Python310/Lib/site-packages",
+        "${env:APPDATA}/Python/Python310/site-packages"
+    ],
+    "python.analysis.typeCheckingMode": "strict",
+    "autoDocstring.docstringFormat": "google",
+    "autoDocstring.quoteStyle": "'''",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    }
+}
