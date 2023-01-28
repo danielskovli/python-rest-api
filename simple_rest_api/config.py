@@ -17,10 +17,6 @@ class Security:
         app_name = 'z_appname'
 
 
-class Routing:
-    route_prefix = 'demo'
-
-
 class Hosts:
     pass
 

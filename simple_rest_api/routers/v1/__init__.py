@@ -1,3 +1,1 @@
-from ...config import Routing
-
-BASE_URL = f'{Routing.route_prefix}/v1'
+BASE_URL = '/v1'
