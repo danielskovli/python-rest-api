@@ -1,12 +1,19 @@
 '''Configuration'''
 
+import os
+from . import constants
+
+
+class Environment:
+    is_prod_server = os.getenv('FANCY_PROD_ENVIRONMENT')
+
 
 class Security:
-    api_key_length = 32
+    api_key_numbytes = 32
     api_key_prefix = 'z_'
 
     class Hashing:
-        api_key_method = None
+        api_key_method = constants.HashingMethod.sha256
 
     class Headers:
         api_key = 'Z-ApiKey'

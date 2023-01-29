@@ -18,15 +18,35 @@
             "justMyCode": false
         },
         {
+            "name": "Python: Generate API key",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/simple_rest_api/cli/generate_api_key.py",
+            "args": ["${input:app_name}"],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Python: Test API key",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/simple_rest_api/cli/test_api_key.py",
             "args": [
-                "test-app",
-                "q_yzuekKQsPcL6ddaTuiigI-uqqq8o03hmTokEx21r"
+                "${input:app_name}",
+                "${input:api_key}"
             ],
             "console": "integratedTerminal"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "app_name",
+            "type":"promptString",
+            "description": "App name associated with API key"
+        },
+        {
+            "id": "api_key",
+            "type":"promptString",
+            "description": "API key (raw, unhashed)"
         }
     ]
 }

@@ -18,5 +18,14 @@
     "files.exclude": {
         "**/__pycache__": true,
         "**/*.pyc": true
-    }
+    },
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./tests",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
 }

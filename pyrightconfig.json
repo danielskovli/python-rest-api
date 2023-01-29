@@ -1,3 +1,5 @@
 {
-    "reportUnusedImport": "none"
+    "reportUnusedImport": "none",
+    "reportUnusedVariable": "warning",
+    "reportMissingParameterType": "none"
 }
