@@ -29,7 +29,7 @@
             "name": "Python: Test API key",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/simple_rest_api/cli/test_api_key.py",
+            "program": "${workspaceFolder}/simple_rest_api/cli/validate_api_key.py",
             "args": [
                 "${input:app_name}",
                 "${input:api_key}"

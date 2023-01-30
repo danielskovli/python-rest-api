@@ -3,7 +3,6 @@ import random
 from simple_rest_api import constants, utils
 
 
-
 class TestUtilsCryptography(unittest.TestCase):
 
     def test_generate_key(self):

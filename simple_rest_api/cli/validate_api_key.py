@@ -1,3 +1,5 @@
+'''Validate API keys'''
+
 import sys
 import argparse
 

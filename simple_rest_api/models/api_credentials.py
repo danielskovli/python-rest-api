@@ -1,3 +1,5 @@
+'''API key-entry and related models'''
+
 import datetime
 
 from typing import Any
