@@ -1,4 +1,4 @@
-'''Custom exceptions'''
+'''Custom app exceptions'''
 
 from fastapi import HTTPException, status
 

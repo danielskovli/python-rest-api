@@ -1,15 +1,20 @@
 '''simple-rest-api main entry -> all global inits go here'''
 
-import os
-
 from fastapi import FastAPI, Depends, Request
 from fastapi.responses import Response
 from fastapi.openapi.utils import get_openapi
 
+from . import config, security, utils
 from .version import __version__, __description__, __title__
-from . import config
-from . import security
-from .routers.v1 import status
+from .routers.v1 import status, pizza
+
+
+# Populate some sample db-data
+print('Creating db tables')
+utils.init_db.create_tables()
+
+print('Populating sample data')
+utils.init_db.populate_demo_data()
 
 
 # Main app entry
@@ -25,6 +30,7 @@ app = FastAPI(
 
 # Include all routers
 app.include_router(status.router)
+app.include_router(pizza.router)
 
 
 # Default root

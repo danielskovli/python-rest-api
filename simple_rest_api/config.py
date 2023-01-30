@@ -1,7 +1,8 @@
-'''Configuration'''
+'''App configuration'''
 
 import os
 from . import constants
+from .models import host
 
 
 class Environment:
@@ -25,8 +26,7 @@ class Security:
 
 
 class Hosts:
-    pass
-
+    pizza_sqlite = host.InMemorySqliteHost()
 
 class RemoteEndpoints:
     pass

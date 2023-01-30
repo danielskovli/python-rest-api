@@ -1,7 +1,6 @@
 '''Security scheme definitions'''
 
 from typing import Optional, Any
-
 from fastapi import HTTPException, Request, status, Security
 from fastapi.security import APIKeyHeader, APIKeyQuery
 
@@ -11,6 +10,8 @@ from .models.api_credentials import ApiKeyEntry
 
 
 class ApiKeyAuthScheme:
+    '''Custom paired API key authentication scheme'''
+
     query_key_scheme_name = 'ApiKeyQuery'
     query_app_scheme_name = 'AppNameQuery'
     header_key_scheme_name = 'ApiKeyHeader'

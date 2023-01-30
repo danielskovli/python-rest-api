@@ -1,3 +1,5 @@
+'''Hypothetical server/whatever status endpoint'''
+
 from . import BASE_URL
 from fastapi import APIRouter, Request
 
@@ -5,6 +7,7 @@ from fastapi import APIRouter, Request
 router = APIRouter(
     prefix=BASE_URL + '/status'
 )
+
 
 @router.get("/")
 async def root(request: Request):
