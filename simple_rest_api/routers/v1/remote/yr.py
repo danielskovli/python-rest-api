@@ -1,16 +1,16 @@
-'''Just grab a random Wikipedia article'''
+'''Yr weather service interface'''
 
 from fastapi import APIRouter
 
 from .. import BASE_URL
 from ....utils import requests
 from ....config import RemoteEndpoints
-from ....middleware.route_handlers import InterceptDbErrorRoute
+from ....middleware.route_handlers import RequestTimingRoute
 
 
 router = APIRouter(
     prefix=BASE_URL + '/remote/yr-forecast',
-    route_class=InterceptDbErrorRoute
+    route_class=RequestTimingRoute
 )
 
 

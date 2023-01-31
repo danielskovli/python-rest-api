@@ -1,9 +1,5 @@
 '''Custom route handlers'''
 
-# Peewee has very poor type hinting support:
-# pyright: reportUnknownVariableType=false
-# pyright: reportMissingTypeArgument=false
-
 import time
 from typing import Callable, Coroutine, Any
 
@@ -15,6 +11,8 @@ from ..exceptions import ItemNotFoundError
 
 
 class RequestTimingRoute(APIRoute):
+    '''Times the processing time for a request and injects it into the returned headers'''
+
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         original_route_handler = super().get_route_handler()
 
@@ -29,6 +27,11 @@ class RequestTimingRoute(APIRoute):
 
 
 class InterceptDbErrorRoute(RequestTimingRoute):
+    '''Intercept common DB exceptions and offer a nicer JSON return structure for the caller
+
+    Inherits from `RequestTimingRoute`
+    '''
+
     def get_route_handler(self) -> Callable[[Request], Coroutine[Any, Any, Response]]:
         original_route_handler = super().get_route_handler()
 

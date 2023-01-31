@@ -1,3 +1,5 @@
+'''Tests for utils.cryptography'''
+
 import unittest
 import random
 from simple_rest_api import constants, utils

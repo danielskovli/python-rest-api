@@ -15,6 +15,7 @@ class BaseModel(peewee.Model):
     class Meta:
         database = Hosts.pizza_sqlite.instance()
 
+
 class NamedModel(BaseModel):
     '''Contains a `name` property'''
 
@@ -73,6 +74,7 @@ class PizzaRating(BaseModel):
     author = peewee.CharField()
     timestamp = peewee.DateTimeField(default=datetime.datetime.now)
     num_stars = peewee.IntegerField()
+
 
 class PizzaTopping(BaseModel):
     pizza = peewee.ForeignKeyField(Pizza)

@@ -13,7 +13,6 @@ ALL_HIDE_TAGS = [
     SENSITIVE_TAG
 ]
 
-
 class HashingMethod(str, Enum):
     md5 = 'md5'
     sha256 = 'sha256'
