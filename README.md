@@ -4,7 +4,6 @@ This project serves as a demo and proof of concept for an API server built on th
 Thanks for stopping by, and make sure you skim the cliff notes below if you're interested in cloning and running this package.
 
 ## Requirements
----
 This project was built using Python 3.10, and while it's very likely compatible with earlier versions, you will most likely have some type hinting issues.
 
 The other requirements are simply pip packages as per [requirements.txt](requirements.txt).
@@ -12,7 +11,6 @@ The other requirements are simply pip packages as per [requirements.txt](require
 The server binds to `localhost:80` by default, but can be changed easily by modifying the `uvicorn` flags for whichever launch mechanism you're using.
 
 ## Usage
----
 I'll go through a few ways you can run this project below, but you'll most likely want to interface with it as well. Before you go ahead an make a super-slick react app, you could start by loading the supplied [Postman collection](postman_collection.json).
 
 Once the server is running you can check out the [Swagger docs](http://localhost/docs). This particular link will only work at runtime, not necessarily right now as you're reading this on GitHub.
@@ -46,7 +44,6 @@ python.exe -m uvicorn simple_rest_api.main:app --reload --host 0.0.0.0 --port 80
 Just make sure you're launching the correct Python interpreter. The system default isn't always the version you want -- particularly not when I've gone ahead and done some Python 3.10-esque things in this package.
 
 ## Security
----
 For the sake of demobility (that's a real word, surely), the chosen authentication method is the reasonably straightforward API key scheme. However, I have chosen to expand upon this to require a set of paired keys; a *secret key* along with a known *app name*.
 
 In an actual production environment, these keys will most definitely be stored in an external key vault. For this demo though, they are one-way hashed and stored right here [in the repository](simple_rest_api/tempstorage/pseudo_keystore.json).
@@ -58,7 +55,6 @@ To get started, you can use the default credentials:<br>
 Or if you prefer, you can generate and validate API keys with the supplied [VSCode launch settings](.vscode/launch.json). If that still doesn't cut the mustard, you can go straight to the standalone CLI via [generate_api_key.py](simple_rest_api/cli/generate_api_key.py) and [validate_api_key.py](simple_rest_api/cli/validate_api_key.py).
 
 ## Persistence
----
 This demo uses a simple In-Memory SQLite instance, which will not persist once you stop the running process. Initial data population happens in [init_db.py](simple_rest_api/utils/init_db.py), which you can tweak to your specific requirements. 
 
 That said, if you're using something like this project for something real, you will obviously use a real backing database. If you want a database, which you may not.
