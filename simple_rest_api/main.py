@@ -6,7 +6,7 @@ from fastapi.openapi.utils import get_openapi
 
 from . import config, security, utils
 from .version import __version__, __description__, __title__
-from .routers.v1 import status, pizza
+from .routers.v1 import status, pizza, remote
 
 
 # Populate some sample db-data
@@ -30,6 +30,8 @@ app = FastAPI(
 
 # Include all routers
 app.include_router(status.router, tags=[config.Tags.misc])
+app.include_router(remote.wikipedia.router, tags=[config.Tags.remote])
+app.include_router(remote.yr.router, tags=[config.Tags.remote])
 app.include_router(pizza.main.router, tags=[config.Tags.pizza])
 app.include_router(pizza.rating.router, tags=[config.Tags.pizza])
 

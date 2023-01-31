@@ -1,0 +1,21 @@
+'''Just grab a random Wikipedia article'''
+
+from fastapi import APIRouter
+
+from .. import BASE_URL
+from ....utils import requests
+from ....config import RemoteEndpoints
+from ....middleware.route_handlers import InterceptDbErrorRoute
+
+
+router = APIRouter(
+    prefix=BASE_URL + '/remote/random-wiki',
+    route_class=InterceptDbErrorRoute
+)
+
+
+@router.get("/")
+async def get_random_article():
+    return requests.get_json(
+        url=RemoteEndpoints.wiki_random
+    )

@@ -30,7 +30,8 @@ class Hosts:
 
 
 class RemoteEndpoints:
-    pass
+    wiki_random = 'https://en.wikipedia.org/api/rest_v1/page/random/summary'
+    yr_forecast = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?lat={lat:.3f}&lon={lon:.3f}'
 
 
 class Tags:
