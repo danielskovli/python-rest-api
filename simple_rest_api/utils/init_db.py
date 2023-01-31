@@ -1,10 +1,9 @@
 '''Demo-db initialization and data population'''
 
-# Peewee has very poor type hinting support
+# Peewee has very poor type hinting support:
 # pyright: reportUnknownMemberType=false
 
 import random
-import pydantic
 
 from ..config import Hosts
 from ..models.sql import pizza as schema

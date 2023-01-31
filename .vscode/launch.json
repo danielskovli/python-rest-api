@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: FastAPI",
+            "name": "API Server",
             "type": "python",
             "request": "launch",
             "module": "uvicorn",
@@ -18,7 +18,7 @@
             "justMyCode": false
         },
         {
-            "name": "Python: Generate API key",
+            "name": "Generate API key",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/simple_rest_api/cli/generate_api_key.py",
@@ -26,7 +26,7 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "Python: Test API key",
+            "name": "Validate API key",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/simple_rest_api/cli/validate_api_key.py",

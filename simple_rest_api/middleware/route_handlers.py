@@ -1,6 +1,6 @@
 '''Custom route handlers'''
 
-# Peewee has very poor type hinting support
+# Peewee has very poor type hinting support:
 # pyright: reportUnknownVariableType=false
 # pyright: reportMissingTypeArgument=false
 

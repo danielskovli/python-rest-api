@@ -1,6 +1,6 @@
 '''It'za-Pizza-Pie'''
 
-# Peewee has very poor type hinting support
+# Peewee has very poor type hinting support:
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownVariableType=false
 # pyright: reportMissingTypeStubs=false

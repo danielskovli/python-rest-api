@@ -1,6 +1,6 @@
 '''CRUD operations for the pizza table'''
 
-# Peewee has very poor type hinting support
+# Peewee has very poor type hinting support:
 # pyright: reportUnknownParameterType=false
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownVariableType=false
