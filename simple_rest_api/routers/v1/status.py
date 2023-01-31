@@ -10,7 +10,7 @@ router = APIRouter(
 
 
 @router.get("/")
-async def root(request: Request):
+async def status(request: Request):
     return {
         'status': 'a-okay',
         'caller': request.client.host if request.client else 'unknown'

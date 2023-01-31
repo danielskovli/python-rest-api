@@ -28,5 +28,12 @@ class Security:
 class Hosts:
     pizza_sqlite = host.InMemorySqliteHost()
 
+
 class RemoteEndpoints:
     pass
+
+
+class Tags:
+    pizza = 'pizza'
+    misc = 'miscellaneous'
+    remote = 'remote'

@@ -1,5 +1,6 @@
 '''Demo-db initialization and data population'''
 
+# Peewee has very poor type hinting support
 # pyright: reportUnknownMemberType=false
 
 import random
@@ -7,6 +8,7 @@ import pydantic
 
 from ..config import Hosts
 from ..models.sql import pizza as schema
+from ..models.payloads.v1 import pizza as payloads
 from ..crud import pizza as db
 
 
@@ -22,30 +24,27 @@ def create_tables():
 
 
 def populate_demo_data():
-    class _DemoPizza(pydantic.BaseModel):
-        name: str
-        toppings: list[str]
-        tags: list[str] = []
-
     pizzas = [
-        _DemoPizza(
+        payloads.Pizza(
             name='Margherita',
             toppings=['Mozarella', 'Basil'],
             tags=['classic', 'simple']
         ),
-        _DemoPizza(
+        payloads.Pizza(
             name='Pepperoni',
             toppings=['Mozarella', 'Pepperoni'],
             tags=['family favorite']
         ),
-        _DemoPizza(
+        payloads.Pizza(
             name='Veggie Supreme',
             toppings=['Mozarella', 'Onions', 'Mushrooms', 'Olives', 'Basil']
         )
     ]
 
     for pizza in pizzas:
-        entity = db.create(schema.Pizza, pizza.name)
-        [db.add_topping(entity, x) for x in pizza.toppings]
-        [db.add_tag(entity, x) for x in pizza.tags]
+        entity = db.create_complete_pizza(
+            name=pizza.name,
+            toppings=pizza.toppings,
+            tags=pizza.tags
+        )
         db.rate(entity, 'anonymous', random.randint(3, 5))

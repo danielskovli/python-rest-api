@@ -1,5 +1,6 @@
 '''Data model for the `pizza` table'''
 
+# Peewee has very poor type hinting support
 # pyright: reportUnknownMemberType=false
 # pyright: reportUnknownVariableType=false
 

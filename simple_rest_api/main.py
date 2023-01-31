@@ -29,13 +29,14 @@ app = FastAPI(
 
 
 # Include all routers
-app.include_router(status.router)
-app.include_router(pizza.router)
+app.include_router(status.router, tags=[config.Tags.misc])
+app.include_router(pizza.main.router, tags=[config.Tags.pizza])
+app.include_router(pizza.rating.router, tags=[config.Tags.pizza])
 
 
 # Default root
-@app.get('/')
-async def root():
+@app.get('/', tags=[config.Tags.misc])
+async def info():
     return app.openapi()['info']
 
 
