@@ -54,6 +54,20 @@ To get started, you can use the default credentials:<br>
 
 Or if you prefer, you can generate and validate API keys with the supplied [VSCode launch settings](.vscode/launch.json). If that still doesn't cut the mustard, you can go straight to the standalone CLI via [generate_api_key.py](simple_rest_api/cli/generate_api_key.py) and [validate_api_key.py](simple_rest_api/cli/validate_api_key.py).
 
+The keys need to either be injected into the headers of a request, or passed as query parameters. The specific naming for this is controlled via [config.py](simple_rest_api/config.py), but looks something like this:
+
+### Headers
+```
+> Z-AppName: demo
+> Z-ApiKey: z_IlZ7JiE2A4_MCdGK2SR5YbIwm3-64ePyZ3rGqKfZ
+
+[GET] http://localhost/
+```
+### Query
+```
+[GET] http://localhost/?z_appname=demo&z_apikey=z_IlZ7JiE2A4_MCdGK2SR5YbIwm3-64ePyZ3rGqKfZ
+```
+
 ## Persistence
 This demo uses a simple In-Memory SQLite instance, which will not persist once you stop the running process. Initial data population happens in [init_db.py](simple_rest_api/utils/init_db.py), which you can tweak to your specific requirements. 
 
