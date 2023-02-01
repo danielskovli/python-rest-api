@@ -1,4 +1,4 @@
-# Simple python (REST) API demo project
+# Simple Python (REST) API demo project
 This project serves as a demo and proof of concept for an API server built on the [FastAPI](https://fastapi.tiangolo.com/) architecture.
 
 Thanks for stopping by, and make sure you skim the cliff notes below if you're interested in cloning and running this package.
