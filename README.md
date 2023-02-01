@@ -4,7 +4,7 @@ This project serves as a demo and proof of concept for an API server built on th
 Thanks for stopping by, and make sure you skim the cliff notes below if you're interested in cloning and running this package.
 
 ## Requirements
-This project was built using Python 3.10, and while it's very likely compatible with earlier versions, you will most likely have some type hinting issues.
+This project was built using Python 3.10, and while it's very likely compatible with earlier versions, you will probably have some type hinting issues.
 
 The other requirements are simply pip packages as per [requirements.txt](requirements.txt).
 
