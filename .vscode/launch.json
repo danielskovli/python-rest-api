@@ -22,7 +22,11 @@
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/simple_rest_api/cli/generate_api_key.py",
-            "args": ["${input:app_name}"],
+            "args": [
+                "app_name=${input:app_name}",
+                "key_roles=${input:key_roles}",
+                "key_level=${input:key_level}"
+            ],
             "console": "integratedTerminal"
         },
         {
@@ -42,6 +46,16 @@
             "id": "app_name",
             "type":"promptString",
             "description": "App name associated with API key"
+        },
+        {
+            "id": "key_roles",
+            "type":"promptString",
+            "description": "API key roles by name, separated by comma. Leave blank if in doubt"
+        },
+        {
+            "id": "key_level",
+            "type":"promptString",
+            "description": "[Integer] API key level by numeric value. Leave blank if in doubt"
         },
         {
             "id": "api_key",

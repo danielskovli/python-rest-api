@@ -1,19 +1,23 @@
 '''simple-rest-api main entry -> all global inits go here'''
 
-from fastapi import FastAPI, Depends, Request
+import logging
+from fastapi import FastAPI, Request
 from fastapi.responses import Response
 from fastapi.openapi.utils import get_openapi
 
-from . import config, security, utils
+from . import config, security, utils, middleware
 from .version import __version__, __description__, __title__
 from .routers.v1 import status, pizza, remote
 
 
+LOG = logging.getLogger(__name__)
+
+
 # Populate some sample db-data
-print('Creating db tables')
+LOG.info('Creating db tables')
 utils.init_db.create_tables()
 
-print('Populating sample data')
+LOG.info('Populating sample data')
 utils.init_db.populate_demo_data()
 
 
@@ -23,10 +27,12 @@ app = FastAPI(
     version=__version__,
     description=__description__,
     dependencies=[
-        Depends(security.ApiKeyAuthScheme())
+        security.qapi_key_dependency()
     ]
 )
 
+# Middleware config
+app.add_middleware(middleware.timing.TimingMiddleware)
 
 # Include all routers
 app.include_router(status.router, tags=[config.Tags.misc])

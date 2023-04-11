@@ -17,12 +17,12 @@ class Security:
         api_key_method = constants.HashingMethod.sha256
 
     class Headers:
-        api_key = 'Z-ApiKey'
-        app_name = 'Z-AppName'
+        api_key = 'X-Api-Key'
+        app_name = 'X-App-Name'
 
     class Query:
-        api_key = 'z_apikey'
-        app_name = 'z_appname'
+        api_key = 'x_api_key'
+        app_name = 'x_app_name'
 
 
 class Hosts:

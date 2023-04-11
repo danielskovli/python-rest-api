@@ -1,22 +1,23 @@
 '''Yr weather service interface'''
 
 from fastapi import APIRouter
-
 from .. import BASE_URL
-from ....utils import requests
-from ....config import RemoteEndpoints
-from ....middleware.route_handlers import RequestTimingRoute
+from .... import utils, security, config
 
 
 router = APIRouter(
     prefix=BASE_URL + '/remote/yr-forecast',
-    route_class=RequestTimingRoute
+    dependencies=[
+        security.qapi_key_dependency(
+            required_roles=security.ApiKeyRole.remote
+        )
+    ]
 )
 
 
 def _get_yr_json(lat: float, lon: float):
-    return requests.get_json(
-        url=RemoteEndpoints.yr_forecast.format(
+    return utils.requests.get_json(
+        url=config.RemoteEndpoints.yr_forecast.format(
             lat=lat,
             lon=lon
         ),

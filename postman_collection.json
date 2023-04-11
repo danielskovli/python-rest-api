@@ -415,11 +415,11 @@
 				"type": "text/javascript",
 				"exec": [
 					"pm.request.headers.add({",
-					"    key: \"Z-ApiKey\", ",
+					"    key: \"X-Api-Key\", ",
 					"    value: pm.collectionVariables.get(\"api_key\")",
 					"});",
 					"pm.request.headers.add({",
-					"    key: \"Z-AppName\", ",
+					"    key: \"X-App-Name\", ",
 					"    value: pm.collectionVariables.get(\"app_name\")",
 					"});"
 				]

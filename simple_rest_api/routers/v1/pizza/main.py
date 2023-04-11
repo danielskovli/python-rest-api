@@ -1,4 +1,4 @@
-'''It'za-Pizza-Pie'''
+'''Itsa-Pizza-Pie'''
 
 # Peewee has very poor type hinting support:
 # pyright: reportUnknownMemberType=false
@@ -12,15 +12,25 @@ from pydantic.error_wrappers import ErrorWrapper
 from playhouse.shortcuts import model_to_dict
 
 from .. import BASE_URL
-from ....middleware.route_handlers import InterceptDbErrorRoute
+from ....middleware.errors import InterceptDbErrorRoute
 from ....models.payloads.v1 import pizza as payloads
 from ....models.sql import pizza as schema
 from ....crud import pizza as db
+from .... import security
+
+
+CAN_ADD_PIZZA = [security.qapi_key_dependency(required_level=security.ApiKeyLevel.read_write_limited)]
+CAN_DELETE_PIZZA = [security.qapi_key_dependency(required_level=security.ApiKeyLevel.read_write_full)]
 
 
 router = APIRouter(
     prefix=BASE_URL + '/pizza',
-    route_class=InterceptDbErrorRoute
+    route_class=InterceptDbErrorRoute,
+    dependencies=[
+        security.qapi_key_dependency(
+            required_roles=security.ApiKeyRole.pizza
+        )
+    ]
 )
 
 
@@ -47,22 +57,16 @@ async def get_all():
 
     entity: schema.Pizza
     for entity in schema.Pizza.select():
-        pizzas.append(_serialize_pizza_entity(entity))
+        pizzas.append(_serialize_pizza_entity(entity)) # pyright: reportUnknownArgumentType=false
 
     return pizzas
 
 
-@router.post("/")
-async def create_one(payload: payloads.Pizza):
-    '''Create a new pizza'''
+@router.get("/{id}")
+async def get_one(id: int):
+    '''Get specific pizza'''
 
-    entity = db.create_complete_pizza(
-        name=payload.name,
-        toppings=payload.toppings,
-        tags=payload.tags
-    )
-
-    return _serialize_pizza_entity(entity)
+    return _serialize_pizza_entity(db.get(schema.Pizza, id=id))
 
 
 @router.get("/find")
@@ -88,14 +92,20 @@ async def find_one(name: str|None=None, payload: payloads.NamedModel|None=None):
     return _serialize_pizza_entity(db.get(schema.Pizza, name=name))
 
 
-@router.get("/{id}")
-async def get_one(id: int):
-    '''Get specific pizza'''
+@router.post("/", dependencies=CAN_ADD_PIZZA)
+async def create_one(payload: payloads.Pizza):
+    '''Create a new pizza'''
 
-    return _serialize_pizza_entity(db.get(schema.Pizza, id=id))
+    entity = db.create_complete_pizza(
+        name=payload.name,
+        toppings=payload.toppings,
+        tags=payload.tags
+    )
+
+    return _serialize_pizza_entity(entity)
 
 
-@router.delete("/{id}")
+@router.delete("/{id}", dependencies=CAN_DELETE_PIZZA)
 async def delete_one(id: int):
     '''Delete specific pizza'''
 
@@ -104,7 +114,7 @@ async def delete_one(id: int):
     }
 
 
-@router.put("/{id}")
+@router.put("/{id}", dependencies=CAN_ADD_PIZZA)
 async def update_one(id: int, payload: payloads.Pizza):
     '''Update specific pizza'''
 

@@ -6,12 +6,17 @@
 
 import os
 import json
+import logging
 from datetime import datetime
+from typing import Optional
 
 from ..config import Security
 from ..exceptions import DuplicateAppNameError, InvalidApiKey
 from ..utils import cryptography
 from ..models import api_credentials as db_model
+
+
+LOG = logging.getLogger(__name__)
 
 
 class _Cache:
@@ -48,6 +53,7 @@ class ApiKeys:
         app_name: str,
         key: str,
         key_level: db_model.ApiKeyLevel|None=None,
+        key_roles: Optional[db_model.ApiKeyRole]=None,
         key_expires: datetime|None=None,
         force_lowercase=True
     ) -> dict[str, str]:
@@ -69,6 +75,9 @@ class ApiKeys:
 
         if key_level is not None:
             entry.level = key_level
+
+        if key_roles is not None:
+            entry.roles = key_roles
 
         if key_expires is not None:
             entry.expires_utc = key_expires
@@ -148,7 +157,7 @@ def _load_json() -> None:
                 json.load(f)
             )
         except Exception as e:
-            print('Error loading JSON from file: {}'.format(e))
+            LOG.exception('Error loading JSON from file: %s', e)
             _Cache.api_credentials = db_model.ApiCredentials()
 
 

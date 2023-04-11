@@ -1,1 +1,1 @@
-from . import cryptography, init_db, requests
+from . import cryptography, init_db, requests, benchmark
