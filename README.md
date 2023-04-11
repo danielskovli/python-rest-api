@@ -41,7 +41,7 @@ python.exe -m pip install --upgrade -r requirements.txt
 python.exe -m uvicorn simple_rest_api.main:app --reload --host 0.0.0.0 --port 80
 ```
 
-Just make sure you're launching the correct Python interpreter. The system default isn't always the version you want &mdash; particularly not when I've gone ahead and done some Python 3.10-esque things in this package.
+Just make sure you're launching the correct Python interpreter. The system default isn't always the version you want &mdash; particularly not when there's likely a couple of version 3.11 dependencies in this package.
 
 ## Security
 For the sake of this demo, the chosen authentication method is the reasonably straightforward API key scheme. However, I have chosen to expand upon this to require a set of paired keys; a *secret key* along with a known *app name*.
